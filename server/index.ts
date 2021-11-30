@@ -33,6 +33,7 @@ const resolvers = {
         bookById: (_:any, {id}:any) => books.find(book => book.id === id),
         getNumberOfBooks: (_:any, {range}:any) => books.slice(0, range),
         searchBooks: (_:any, {query}:any) => {
+            console.log(query);
             const result: {id: number, title: string, author: string}[] = [];
             books.find(book => {
                 if(book.title.includes(query) || book.author.includes(query)){

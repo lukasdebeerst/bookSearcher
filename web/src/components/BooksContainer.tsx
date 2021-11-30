@@ -1,50 +1,55 @@
 import {FC} from "react";
 import {useQuery, gql} from "@apollo/client";
+import Book from "./Book";
 
 
 
 const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}) => {
 
-    const GetBooksById: FC = () => {
+    const FetchData: FC<{query: string}> = ({query}) => {
 
-        const BOOKS = gql`
-        query Books { 
-            searchBooks(query: "Paul") {
-                title, 
-                author
-            }
-        }`;
+        let BOOKS: any;
 
-        const results: any = useQuery(BOOKS)
+        if(query){
+            BOOKS = gql`
+            query Books { 
+                searchBooks(query: "${query}") {
+                    title, 
+                    author
+                }
+            }`;
+        } else {
+            BOOKS = gql`
+            query Books { 
+                books {
+                    title, 
+                    author
+                }
+            }`;
+        }
+       
 
-        console.log("bookscontainer", results);
-        return(<></>)
-    }
+        const {error, loading, data}: any = useQuery(BOOKS);
 
-    const GetAllBooks: FC = () => {
-        const BOOKS = gql`
-        query Books { 
-            books {
-                title, 
-                author
-            }
-        }`;
-
-        const results: any = useQuery(BOOKS)
-
-        console.log("bookscontainer of all books", results);
-        return(<></>)
+        if (loading) return <p>Loading...</p>;
+        if (error) return <p>Error :(</p>;
+        
+        return(
+            <>
+            {data[Object.keys(data)[0]].map((book: any) => (
+                <>
+                <Book title={book.title} author={book.author} />
+                </>
+            ))}
+            </>
+        )
     }
 
 
     return (
-        <>
-        {query ? (
-            <GetBooksById />
-        ) : (
-            <GetAllBooks />
-        )}
-        </>
+        <div>
+            <FetchData query={query} />
+        </div>
     )
 
 }
