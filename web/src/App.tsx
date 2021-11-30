@@ -13,11 +13,10 @@ const App: FC = () => {
   }
 
   return (
-    <>
-    <Searchbar query={query} setQuery={setQuery} />
-    <BooksContainer query={query} setResults={setResults} />
-    {console.log(query)}
-    </>
+    <div className="bg-gradient-to-r from-primary to-secundary min-h-screen flex flex-col items-center p-20 ">
+      <Searchbar query={query} setQuery={setQuery} />
+      <BooksContainer query={query} setResults={setResults} />
+    </div>
   )
 }
 

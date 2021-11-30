@@ -23,8 +23,10 @@ const Searchbar: FC<{query: string, setQuery: any}> = ({query, setQuery}) => {
                     setQuery(e.currentTarget.value)
                 }}
                 value={formik.values.query}
+                placeholder={"Search books"}
+                className={"rounded p-1.5"}
             />
-            <button type="submit">Search</button>
+            {/* <button type="submit">Search</button> */}
         </form>
     )
 

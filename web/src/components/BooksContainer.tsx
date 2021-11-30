@@ -47,7 +47,7 @@ const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}
 
 
     return (
-        <div>
+        <div className={""}>
             <FetchData query={query} />
         </div>
     )
