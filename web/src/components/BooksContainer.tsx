@@ -31,10 +31,10 @@ const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}
 
         const {error, loading, data}: any = useQuery(BOOKS);
 
-        if (loading) return <p>Loading...</p>;
-        if (error) return <p>Error :(</p>;
+        if (loading) return <p className={"bg-white w-full p-4 m-4"}>Loading...</p>;
+        if (error) return <p className={"bg-white w-full p-4 m-4"}>Error :(</p>;
         
-        return(
+        return (
             <>
             {data[Object.keys(data)[0]].map((book: any) => (
                 <>
@@ -47,7 +47,7 @@ const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}
 
 
     return (
-        <div className={""}>
+        <div className={"w-96"}>
             <FetchData query={query} />
         </div>
     )

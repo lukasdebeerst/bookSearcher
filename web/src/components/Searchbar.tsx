@@ -13,7 +13,7 @@ const Searchbar: FC<{query: string, setQuery: any}> = ({query, setQuery}) => {
     })
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form className={"w-96"} onSubmit={formik.handleSubmit}>
             <input 
                 id="query"
                 name="query"
@@ -24,7 +24,7 @@ const Searchbar: FC<{query: string, setQuery: any}> = ({query, setQuery}) => {
                 }}
                 value={formik.values.query}
                 placeholder={"Search books"}
-                className={"rounded p-1.5"}
+                className={"rounded p-1.5 w-full"}
             />
             {/* <button type="submit">Search</button> */}
         </form>
