@@ -1,8 +1,7 @@
 import {FC} from "react";
 import {useQuery, gql} from "@apollo/client";
 import Book from "./Book";
-
-
+import Error from "./Error";
 
 const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}) => {
 
@@ -31,16 +30,23 @@ const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}
 
         const {error, loading, data}: any = useQuery(BOOKS);
 
+
+
         if (loading) return <p className={"bg-white w-full p-4 m-4"}>Loading...</p>;
         if (error) return <p className={"bg-white w-full p-4 m-4"}>Error :(</p>;
         
         return (
             <>
-            {data[Object.keys(data)[0]].map((book: any) => (
-                <>
-                <Book title={book.title} author={book.author} />
-                </>
-            ))}
+            {data[Object.keys(data)[0]].length === 0 ? (
+                <Error message={"No items found"} />
+            ) : (
+                data[Object.keys(data)[0]].map((book: any) => (
+                    <>
+                    <Book title={book.title} author={book.author} />
+                    </>
+                ))
+            )}
+            
             </>
         )
     }

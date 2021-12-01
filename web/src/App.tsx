@@ -1,6 +1,7 @@
 import React, {useState, FC} from 'react';
 import Searchbar from "./components/Searchbar";
 import BooksContainer from "./components/BooksContainer";
+import Error from "./components/Error";
 
 const App: FC = () => {
 
