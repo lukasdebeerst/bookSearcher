@@ -30,8 +30,6 @@ const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}
 
         const {error, loading, data}: any = useQuery(BOOKS);
 
-
-
         if (loading) return <p className={"bg-white w-full p-4 m-4"}>Loading...</p>;
         if (error) return <p className={"bg-white w-full p-4 m-4"}>Error :(</p>;
         
@@ -41,9 +39,9 @@ const BooksContainer: FC<{query: string, setResults:any}> = ({query, setResults}
                 <Error message={"No items found"} />
             ) : (
                 data[Object.keys(data)[0]].map((book: any) => (
-                    <>
-                    <Book title={book.title} author={book.author} />
-                    </>
+                    <div key={book.title}>
+                        <Book title={book.title} author={book.author} />
+                    </div>
                 ))
             )}
             
